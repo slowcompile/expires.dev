@@ -55,7 +55,7 @@ jobs:
       contents: write
     steps:
       - name: Download binary
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: upload-linux-amd64
           path: dist
@@ -64,7 +64,7 @@ jobs:
         run: echo "${{ needs.build.outputs.sha }}  dist/upload-linux-amd64" | sha256sum -c
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/upload-linux-amd64
           generate_release_notes: true
