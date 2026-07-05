@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>expires.dev — 24h temporary file hosting</title>
+    <meta name="description" content="Free temporary file hosting from the command line. Upload with a single curl command, get a link, share it. Every file is automatically deleted after 24 hours. Max 64 MiB. No accounts, no tracking.">
+    <meta name="keywords" content="temporary file hosting, file sharing, curl upload, command line file upload, ephemeral file host, self-destructing files, 24 hour file hosting, free file upload, pastebin for files, terminal file sharing">
+    <meta name="author" content="expires.dev">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://expires.dev/">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+
+    <style>
+        :root{
+            --bg:#000;
+            --fg:#e8e8e8;
+            --dim:#777;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            background:var(--bg);
+            color:var(--fg);
+            font-family:ui-monospace,"Cascadia Mono","JetBrains Mono","Fira Code",Menlo,Consolas,monospace;
+            font-size:15px;
+            line-height:1.45;
+            padding:48px 16px 96px;
+        }
+        ::selection{background:var(--fg);color:var(--bg)}
+        .page{max-width:78ch;margin:0 auto}
+        pre{
+            white-space:pre;
+            overflow-x:auto;
+        }
+        a{color:var(--fg)}
+        a:hover{background:var(--fg);color:var(--bg);text-decoration:none}
+
+        .dim{color:var(--dim)}
+
+        /* keep the plaintext look on real heading tags */
+        h1,h2{
+            font-size:inherit;
+            font-weight:inherit;
+            display:inline;
+        }
+
+        details{margin:1.4em 0}
+        details pre{margin-top:.6em}
+        summary{
+            cursor:pointer;
+            list-style:none;
+            user-select:none;
+        }
+        summary::-webkit-details-marker{display:none}
+        summary::before{content:"[+] "}
+        details[open] summary::before{content:"[-] "}
+        summary:hover{background:var(--fg);color:var(--bg)}
+        summary:focus-visible{outline:1px solid var(--fg);outline-offset:2px}
+
+        .inner{padding-left:4ch}
+        @media (max-width:600px){
+            .inner{padding-left:2ch}
+            body{font-size:13px}
+        }
+
+        .copy{
+            background:none;border:none;color:var(--dim);
+            font:inherit;cursor:pointer;
+        }
+        .copy:hover{background:var(--fg);color:var(--bg)}
+
+        .addr{word-break:break-all;white-space:normal}
+    </style>
+</head>
+<body>
+<div class="page">
+<pre>
+<h1>EXPIRES.DEV</h1>
+===========
+
+Temporary file hoster. Everything expires.
+
+expiry   = 24 hours
+max_size = 64.0 MiB
+</pre>
+
+    <details open>
+        <summary><h2>Uploading files</h2></summary>
+        <div class="inner">
+<pre>
+Send HTTP POST requests to https://expires.dev with
+data encoded as multipart/form-data
+
+Valid fields are:
+
+  ┌─────────┬────────────┬──────────┐
+  │ field   │ content    │ remarks  │
+  ╞═════════╪════════════╪══════════╡
+  │ file    │ data       │          │
+  └─────────┴────────────┴──────────┘
+</pre>
+            <details>
+                <summary><h2>cURL examples</h2></summary>
+                <div class="inner">
+<pre>
+Uploading a file:
+
+    curl -F'file=@yourfile.png' https://expires.dev   <button class="copy" onclick="copyCurl(this)">[copy]</button>
+</pre>
+                </div>
+            </details>
+        </div>
+    </details>
+
+    <details>
+        <summary><h2>Terms of Service</h2></summary>
+        <div class="inner">
+<pre>
+expires.dev is NOT a platform for:
+
+    * piracy
+    * pornography and gore
+    * AI slop
+    * extremist material of any kind
+    * terrorist content
+    * malware / botnet C&amp;C
+    * backups
+    * CI build artifacts
+    * other automated mass uploads
+    * doxxing, database dumps containing
+      personal information
+    * anything illegal
+
+Uploads found to be in violation of these rules will
+be removed, and the originating IP address may be
+blocked from further uploads.
+</pre>
+        </div>
+    </details>
+
+    <details>
+        <summary><h2>Privacy Policy</h2></summary>
+        <div class="inner">
+<pre>
+For the purpose of moderation, the following is
+stored with each uploaded file:
+
+    * IP address
+    * User agent string
+
+This site generally does not log requests, but may
+enable logging if necessary for purposes such as
+threat mitigation.
+
+No data is shared with third parties.
+</pre>
+        </div>
+    </details>
+
+    <details>
+        <summary><h2>Abuse and Takedown Requests</h2></summary>
+        <div class="inner">
+<pre>
+To report abuse or request file removal, use one of
+the following contact methods:
+
+    * email: <a href="mailto:abuse@expires.dev">abuse@expires.dev</a>
+</pre>
+        </div>
+    </details>
+
+    <pre class="dim">
+------------------------------------------------------
+
+If you wish to make just a small one-time donation,
+send XMR to:
+</pre>
+    <pre class="dim addr">    45a8CtxSTAJ7D6rbUznxmzESeMw9NLLv92Gfjy4C3HZaeUWCWQzBbgG8mXWNebpcrHgu8ZfM8kNkG9qaCzHKRDnk9YBYyxT</pre>
+
+</div>
+<script>
+    function copyCurl(btn){
+        navigator.clipboard.writeText("curl -F'file=@yourfile.png' https://expires.dev").then(()=>{
+            btn.textContent='[copied]';
+            setTimeout(()=>btn.textContent='[copy]',1500);
+        });
+    }
+</script>
+</body>
+</html>
